@@ -1,0 +1,373 @@
+/* GameMap.css with responsive design */
+.game-map-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.game-map {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.map-background {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 60%, #228B22 60%, #228B22 100%);
+  position: relative;
+}
+
+/* Map title */
+.map-title {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 32px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: 'Luminari', fantasy;
+  text-align: center;
+  width: 90%;
+  max-width: 600px;
+}
+
+/* Regions */
+.map-region {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 3px solid #ccc;
+  transition: all 0.3s ease;
+  z-index: 5;
+}
+
+.map-region:hover {
+  transform: scale(1.1);
+}
+
+.region-icon {
+  font-size: 24px;
+}
+
+.region-name {
+  margin-top: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.region-difficulty {
+  margin-top: 2px;
+  font-size: 10px;
+  color: #666;
+}
+
+/* Locked regions */
+.locked {
+  background-color: #888;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.lock-icon {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 20px;
+  z-index: 6;
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.3));
+}
+
+/* Completed regions */
+.completed {
+  background-color: #aaffaa;
+  border-color: #00aa00;
+}
+
+/* Boss level */
+.boss {
+  background-color: #ffcccc;
+  border-color: #ff0000;
+}
+
+.boss .region-icon {
+  font-size: 32px;
+}
+
+/* Glowing effect for unlocked regions */
+.region-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 0 0 20px 10px rgba(255, 255, 0, 0.5);
+  animation: pulse 2s infinite;
+  z-index: -1;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+
+/* Treasure chests */
+.treasure-chest {
+  position: absolute;
+  font-size: 24px;
+  z-index: 6;
+  animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-10px); }
+}
+
+/* Paths between regions */
+.path-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.map-path {
+  stroke: #999;
+  stroke-width: 5;
+  stroke-dasharray: 10, 5;
+}
+
+.map-path.completed {
+  stroke: #00aa00;
+  stroke-width: 6;
+  animation: dashOffset 30s linear infinite;
+}
+
+.map-path.hidden {
+  opacity: 0.3;
+}
+
+@keyframes dashOffset {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+/* Cloud animations */
+.cloud {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  filter: blur(10px);
+  z-index: 1;
+}
+
+.cloud-1 {
+  width: 15%;
+  height: 10%;
+  top: 5%;
+  left: -15%;
+  animation: moveCloud 120s linear infinite;
+}
+
+.cloud-2 {
+  width: 10%;
+  height: 8%;
+  top: 10%;
+  left: -10%;
+  animation: moveCloud 80s linear infinite 20s;
+}
+
+.cloud-3 {
+  width: 20%;
+  height: 12%;
+  top: 3%;
+  left: -20%;
+  animation: moveCloud 150s linear infinite 40s;
+}
+
+@keyframes moveCloud {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(100vw + 20%)); }
+}
+
+/* Water animation */
+.water {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: 
+    linear-gradient(
+      to bottom, 
+      rgba(30, 144, 255, 0.2), 
+      rgba(0, 0, 128, 0.5)
+    );
+  animation: waterWave 10s ease-in-out infinite alternate;
+}
+
+@keyframes waterWave {
+  0% { transform: translateY(5px); }
+  100% { transform: translateY(-5px); }
+}
+
+/* Compass */
+.compass {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  font-size: 32px;
+  animation: rotate 60s linear infinite;
+  transform-origin: center center;
+  z-index: 10;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Region details panel */
+.region-details {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  max-width: 90%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 20;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.region-details.mobile {
+  width: 85%;
+  padding: 15px;
+  bottom: 10px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.details-header h2 {
+  margin: 0;
+  color: #333;
+  font-size: clamp(16px, 5vw, 24px);
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #999;
+}
+
+.close-button:hover {
+  color: #333;
+}
+
+.details-description {
+  margin-bottom: 15px;
+  color: #666;
+  font-size: clamp(14px, 4vw, 16px);
+}
+
+.details-difficulty {
+  margin-bottom: 15px;
+  color: #666;
+  font-size: clamp(14px, 4vw, 16px);
+}
+
+.start-challenge-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  font-size: clamp(14px, 4vw, 16px);
+}
+
+.start-challenge-button:hover {
+  background-color: #45a049;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .map-path {
+    stroke-width: 3;
+  }
+  
+  .map-path.completed {
+    stroke-width: 4;
+  }
+  
+  .lock-icon {
+    top: -5px;
+    right: -5px;
+    font-size: 16px;
+  }
+  
+  .compass {
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .map-title {
+    top: 10px;
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .region-glow {
+    box-shadow: 0 0 10px 5px rgba(255, 255, 0, 0.5);
+  }
+  
+  .cloud-1, .cloud-2, .cloud-3 {
+    display: none;
+  }
+}

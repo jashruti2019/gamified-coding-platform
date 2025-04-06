@@ -1,0 +1,423 @@
+/* Variables for consistent theming */
+:root {
+  --primary-color: #4b6cb7;
+  --primary-dark: #182848;
+  --primary-gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  --accent-color: #ffde59;
+  --success-color: #4f8a10;
+  --error-color: #d8000c;
+  --text-light: #ffffff;
+  --text-dark: #333333;
+  --bg-light: #f0f8ff;
+  --bg-panel: #e3eeff;
+  --bg-editor: #1e1e3f;
+  --editor-text: #c7d4e6;
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 20px;
+  --spacing-xs: 5px;
+  --spacing-sm: 10px;
+  --spacing-md: 15px;
+  --spacing-lg: 20px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+  --font-primary: 'Nunito', sans-serif;
+  --font-code: 'Fira Code', monospace;
+}
+
+/* Base container */
+.code-challenge-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  font-family: var(--font-primary);
+  background-color: var(--bg-light);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow);
+}
+
+/* Header Styles */
+.challenge-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  background: var(--primary-gradient);
+  border-radius: var(--border-radius-md);
+  color: var(--text-light);
+  margin-bottom: var(--spacing-lg);
+}
+
+.challenge-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.header-icon {
+  color: var(--accent-color);
+}
+
+.challenge-title h1 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.player-stats {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-xl);
+}
+
+.stat-icon {
+  color: var(--accent-color);
+}
+
+/* Mission Briefing Styles */
+.mission-briefing {
+  color: #003366;
+  text-shadow: 0 0 1px rgba(255,255,255,0.5); /* Subtle text shadow for legibility */
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-panel);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  border-left: 6px solid var(--primary-color);
+}
+
+.story-container {
+  flex: 2;
+}
+
+.story-container p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.astrobot-image {
+  flex: 1;
+  height: 120px;
+  max-width: 120px;
+  background-image: url('../public/images/astrobot.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Main Challenge Content */
+.challenge-content {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+/* Code Editor Styles */
+.code-editor-container {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+}
+
+.code-editor-header {
+  background-color: var(--primary-dark);
+  color: var(--text-light);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0;
+}
+
+.code-editor-header h3 {
+  margin: 0;
+}
+
+.code-editor {
+  height: 300px;
+  padding: var(--spacing-md);
+  font-family: var(--font-code);
+  font-size: 16px;
+  background-color: var(--bg-editor);
+  color: var(--editor-text);
+  border: none;
+  border-radius: 0 0 var(--border-radius-sm) var(--border-radius-sm);
+  resize: none;
+  outline: none;
+}
+
+.code-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+
+.submit-btn, .reset-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  font-family: var(--font-primary);
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.submit-btn {
+  background-color: #4caf50;
+  color: var(--text-light);
+}
+
+.submit-btn:hover {
+  background-color: #388e3c;
+  transform: translateY(-2px);
+}
+
+.reset-btn {
+  background-color: #f44336;
+  color: var(--text-light);
+}
+
+.reset-btn:hover {
+  background-color: #d32f2f;
+  transform: translateY(-2px);
+}
+
+/* Button focus states for accessibility */
+.submit-btn:focus, .reset-btn:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Feedback Styles */
+.feedback {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  text-align: center;
+  font-weight: bold;
+}
+
+.feedback.success {
+  background-color: #dff2bf;
+  color: var(--success-color);
+  border-left: 6px solid var(--success-color);
+}
+
+.feedback.error {
+  background-color: #ffbaba;
+  color: var(--error-color);
+  border-left: 6px solid var(--error-color);
+}
+
+/* Hints Panel Styles */
+.hints-container {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  color:#003366;
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+}
+
+.hints-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background-color: var(--accent-color);
+  color: var(--text-dark);
+  cursor: pointer;
+}
+
+.hints-header h3 {
+  margin: 0;
+}
+
+.hints-list {
+  padding: var(--spacing-md);
+  margin: 0;
+  list-style-type: none;
+  color:#003366;
+}
+
+.hint-item {
+  padding: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  background-color: #f9f9f9;
+  border-left: 4px solid var(--primary-color);
+  border-radius: 4px;
+  color:#003366;
+  transition: var(--transition);
+}
+
+.hint-item:hover {
+  background-color: var(--bg-panel);
+  transform: translateX(2px);
+}
+
+.instructions-panel {
+  padding: var(--spacing-md);
+  background-color: #f0f0f0;
+  margin-top: auto;
+  border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+}
+
+.instructions-panel h4 {
+  margin-top: 0;
+  margin-bottom: var(--spacing-sm);
+}
+
+.instructions-panel ul {
+  padding-left: var(--spacing-lg);
+  margin: 0;
+}
+
+.instructions-panel li {
+  margin-bottom: 8px;
+}
+
+.instructions-panel code {
+  background-color: var(--bg-panel);
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-family: var(--font-code);
+}
+.next-btn {
+  background-color: #4b6cb7;
+  color: white;
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.next-btn:hover {
+  background-color: #354a8c;
+  transform: scale(1.05);
+}
+
+
+/* Confetti Animation - Optimized */
+@keyframes confetti {
+  0% {
+    background-position: 0% 0%;
+    opacity: 1;
+  }
+  100% {
+    background-position: 100% 100%;
+    opacity: 0;
+  }
+}
+
+.confetti-overlay {
+  position: fixed;
+  inset: 0; /* Shorthand for top, right, bottom, left: 0 */
+  pointer-events: none;
+  background-image: 
+    radial-gradient(circle at 20% 30%, var(--accent-color) 0.2%, transparent 0.5%),
+    radial-gradient(circle at 50% 20%, #ff5722 0.2%, transparent 0.5%),
+    radial-gradient(circle at 80% 30%, #4caf50 0.2%, transparent 0.5%),
+    radial-gradient(circle at 25% 50%, #2196f3 0.2%, transparent 0.5%),
+    radial-gradient(circle at 70% 60%, #e91e63 0.2%, transparent 0.5%),
+    radial-gradient(circle at 33% 80%, #9c27b0 0.2%, transparent 0.5%),
+    radial-gradient(circle at 90% 85%, #ffeb3b 0.2%, transparent 0.5%);
+  background-size: 200% 200%;
+  animation: confetti 3s ease infinite;
+  will-change: background-position, opacity; /* Performance optimization hint */
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-light: #1a1a2e;
+    --bg-panel: #282846;
+    --text-dark: #e1e1e1;
+  }
+  
+  .hints-container, .instructions-panel {
+    background-color: #282846;
+    color: var(--text-light);
+  }
+  
+  .hint-item {
+    background-color: #323250;
+  }
+  
+  .instructions-panel code {
+    background-color: #3a3a5a;
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .challenge-content {
+    flex-direction: column;
+  }
+  
+  .hints-container {
+    margin-top: var(--spacing-lg);
+  }
+  
+  .challenge-title h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mission-briefing {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .astrobot-image {
+    margin-top: var(--spacing-lg);
+  }
+  
+  .challenge-header {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .player-stats {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .code-actions {
+    flex-direction: column;
+  }
+  
+  .submit-btn, .reset-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .challenge-title h1 {
+    font-size: 1.2rem;
+  }
+  
+  .code-challenge-container {
+    padding: var(--spacing-sm);
+  }
+}
